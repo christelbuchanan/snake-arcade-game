@@ -1,0 +1,211 @@
+:root {
+  --bg-color: #111;
+  --grid-color: #222;
+  --snake-color: #39ff14;
+  --food-color: #ff3860;
+  --text-color: #fff;
+  --border-color: #39ff14;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Press Start 2P', cursive;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.game-title {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: var(--snake-color);
+  text-shadow: 0 0 10px var(--snake-color);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { text-shadow: 0 0 10px var(--snake-color); }
+  50% { text-shadow: 0 0 20px var(--snake-color), 0 0 30px var(--snake-color); }
+  100% { text-shadow: 0 0 10px var(--snake-color); }
+}
+
+.game-container {
+  position: relative;
+  border: 4px solid var(--border-color);
+  box-shadow: 0 0 20px var(--border-color);
+  border-radius: 4px;
+}
+
+.game-canvas {
+  display: block;
+  background-color: var(--bg-color);
+}
+
+.score-container {
+  display: flex;
+  justify-content: space-between;
+  width: 400px;
+  margin-top: 10px;
+}
+
+.score-display, .high-score-display {
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.game-over {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s;
+}
+
+.game-over.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.game-over h2 {
+  color: var(--food-color);
+  font-size: 2rem;
+  text-shadow: 0 0 10px var(--food-color);
+}
+
+.game-over p {
+  color: var(--text-color);
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.start-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.btn {
+  background-color: var(--snake-color);
+  color: var(--bg-color);
+  border: none;
+  padding: 10px 20px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 4px;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px var(--snake-color);
+}
+
+.controls {
+  margin-top: 20px;
+  font-size: 0.7rem;
+  text-align: center;
+  color: #888;
+}
+
+.controls p {
+  margin-bottom: 5px;
+}
+
+/* Touch controls for mobile */
+.touch-controls {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  opacity: 0.7;
+}
+
+.touch-controls.active {
+  display: flex;
+}
+
+.touch-middle {
+  display: flex;
+  gap: 10px;
+}
+
+.touch-btn {
+  width: 50px;
+  height: 50px;
+  background-color: rgba(57, 255, 20, 0.3);
+  border: 2px solid var(--snake-color);
+  border-radius: 10px;
+  color: var(--snake-color);
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.touch-btn:active {
+  background-color: rgba(57, 255, 20, 0.6);
+}
+
+/* Media queries for responsive design */
+@media (max-width: 500px) {
+  .game-title {
+    font-size: 2rem;
+  }
+  
+  .game-container, .game-canvas, .score-container {
+    width: 320px;
+    height: 320px;
+  }
+  
+  .game-canvas {
+    width: 320px;
+    height: 320px;
+  }
+  
+  .score-container {
+    width: 320px;
+  }
+  
+  .touch-controls {
+    bottom: 60px;
+  }
+}
