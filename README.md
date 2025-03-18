@@ -2,8 +2,6 @@
 
 A modern implementation of the classic Snake game with arcade-style visuals and enhanced gameplay features.
 
-![Snake Game Screenshot](https://i.imgur.com/JYFgIjS.png)
-
 ## 🎮 Play Now
 
 You can play the game by running:
